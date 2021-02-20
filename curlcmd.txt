@@ -1,0 +1,2 @@
+curl -XPOST -i -F file=@"./example.nessus" http://127.0.0.1:8000/nessus_file -H 'Authorization: Token f8196b148cfce6e122f353be51680228a1d13945'
+

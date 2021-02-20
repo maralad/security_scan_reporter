@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:  
+  frontend:
+    build: ./src/frontend
+    #command: bash -c "npm run serve"
+    container_name: don_frontend
+    hostname: don_frontend
+    ports:
+      - "8080:8080"
+
+  backend:    
+    build: ./src/backend
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=ap4e2g7!^=40i@rivbr83-8-62gfnkvm&m!$kl6^h_%0v#4@(*
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+    expose:
+      - 8000
+    ports:
+      - "8000:8000"
+    volumes: 
+      - ./src/backend:/src 
