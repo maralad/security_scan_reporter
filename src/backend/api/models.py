@@ -14,7 +14,7 @@ class Report(models.Model):
 		return self.report_name
     
 class ItemsFound(models.Model):
-	severity = models.CharField(max_length=2)
+	severity = models.CharField(max_length=50)
 	plugin_id = models.CharField(max_length=10)
 	plugin_name = models.CharField(max_length=200)
 	plugin_family = models.CharField(max_length=200)

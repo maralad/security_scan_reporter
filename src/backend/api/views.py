@@ -44,12 +44,15 @@ def login(request):
 
 
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny]) # Should be IsAuthenticated. have to figure that out on the Vue front end first
 def nessus_file(request):
 
     if request.method == 'POST':
         username = request.user.username
+        print(f'username = {username}')
+
         nes_file = request.FILES['file']
+        print(f'nes_file ======{nes_file}')
         if not nes_file:
             return Response({'error': 'No file posted, please try again'},
                             status=HTTP_400_BAD_REQUEST)
@@ -71,7 +74,7 @@ def nessus_file(request):
         report.save()
 
         for item_report in report_list:
-            item =ItemsFound(severity=item_report.get('severity'),
+            item =ItemsFound(severity=get_severity(item_report.get('severity')),
                     plugin_id=item_report.get('plugin_id'),
                     plugin_name=item_report.get('plugin_name'),
                     plugin_family=item_report.get('plugin_family'),
@@ -94,3 +97,9 @@ def nessus_file(request):
          return Response({
             'bla': 'bla',
         },status=HTTP_200_OK)
+
+
+def get_severity(level):
+
+    severity_level={"2":"Warning","3":"Minor","4":"Major","5":"Critical"}
+    return severity_level.get(level.strip())

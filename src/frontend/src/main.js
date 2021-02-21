@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard.vue'
 import Login from './components/Login.vue'
 import Logout from './components/Logout.vue'
 
+
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -22,12 +23,14 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+   
   },
   {
     path: '/login',
     name: 'login',
     component: Login
   },
+
   {
     path: '/logout',
     name: 'logout',
