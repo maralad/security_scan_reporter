@@ -1,17 +1,12 @@
 version: '3.3'
 
 services:  
-  # frontend:
-  #   build: ./src/frontend
-  #   #command: bash -c "npm run serve"
-  #   container_name: don_frontend
-  #   hostname: don_frontend
-  #   ports:
-  #     - "8080:8080"
-  #   # volumes: 
-  #   #    - ./src/frontend:/src
-  #   environment:
-  #     - CHOKIDAR_USEPOLLING=true 
+  frontend:
+    build: ./src/frontend
+    container_name: don_frontend
+    hostname: don_frontend
+    ports:
+      - "8080:8080"
 
   backend:    
     build: ./src/backend
